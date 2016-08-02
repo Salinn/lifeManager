@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
   resources :people
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #Creates static page routes
+  StaticPagesController.action_methods.each do |action|
+    get "/#{action}", to: "static_pages##{action}", as: "#{action}"
+  end
+
+  root 'static_pages#home'
 end

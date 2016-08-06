@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shared_item.name %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @shared_item.photo %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @shared_item.user %>
+</p>
+
+<%= link_to 'Edit', edit_shared_item_path(@shared_item) %> |
+<%= link_to 'Back', shared_items_path %>

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :persons
+  resources :apartments
+  resources :needed_items
+  resources :shared_items
+  resources :bills
+  resources :landlords
   devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
-
-  resources :people
 
   #Creates static page routes
   StaticPagesController.action_methods.each do |action|

@@ -1,0 +1,1 @@
+json.partial! "shared_items/shared_item", shared_item: @shared_item

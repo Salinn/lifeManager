@@ -1,0 +1,1 @@
+json.array! @people, partial: 'person/person', as: :person

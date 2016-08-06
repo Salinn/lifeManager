@@ -1,0 +1,1 @@
+json.partial! "needed_items/needed_item", needed_item: @needed_item

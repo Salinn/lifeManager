@@ -1,1 +1,9 @@
-<h1>home page</h1>
+<% if current_user %>
+    <% if current_user.person %>
+        <%= render 'static_pages/home/logged_in' %>
+    <% else %>
+        <%= render 'static_pages/home/logged_in_no_apt' %>
+    <% end %>
+<% else %>
+    <%= render 'static_pages/home/not_logged_in' %>
+<% end %>

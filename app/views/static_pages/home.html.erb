@@ -1,5 +1,5 @@
 <% if current_user %>
-    <% if current_user.person %>
+    <% if current_user.account %>
         <%= render 'static_pages/home/logged_in' %>
     <% else %>
         <%= render 'static_pages/home/logged_in_no_apt' %>

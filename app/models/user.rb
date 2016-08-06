@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :person
+  belongs_to :account
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
@@ -16,13 +16,14 @@ class User < ApplicationRecord
       if registered_user
         return registered_user
       else
-        person = Person.create(first_name: data['first_name'],
+        account = Account.create(first_name: data['first_name'],
                                last_name: data['last_name'])
+
         user = User.create(provider: access_token.provider,
                            email: data["email"],
                            uid: access_token.uid ,
                            password: Devise.friendly_token[0,20],
-                           person_id: person.id
+                           account: account
         )
       end
     end

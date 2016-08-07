@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20160806000900) do
 
   create_table "all_apartments", force: :cascade do |t|
     t.integer  "apartment_id"
-    t.integer  "person_id"
+    t.integer  "account_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.index ["account_id"], name: "index_all_apartments_on_account_id"
     t.index ["apartment_id"], name: "index_all_apartments_on_apartment_id"
-    t.index ["person_id"], name: "index_all_apartments_on_person_id"
   end
 
   create_table "apartments", force: :cascade do |t|
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20160806000900) do
     t.string   "state"
     t.date     "start_date"
     t.date     "end_date"
+    t.string   "rent_price"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["landlord_id"], name: "index_apartments_on_landlord_id"

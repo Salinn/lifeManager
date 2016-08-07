@@ -8,7 +8,7 @@ class CreateApartments < ActiveRecord::Migration[5.0]
       t.string :state
       t.date :start_date
       t.date :end_date
-      t.string# :rent_price
+      t.string :rent_price
 
       t.timestamps
     end

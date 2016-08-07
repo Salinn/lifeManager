@@ -1,19 +1,84 @@
-<p id="notice"><%= notice %></p>
+<!-- http://bootsnipp.com/snippets/featured/simple-user-profile -->
+<div class="card col-xs-12 col-sm-4">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Account Information</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-3 col-lg-3 " align="center">
+          <%= image_tag 'no_profile_picture.jpg', class: "img-responsive img-circle"%>
+        </div>
+        <div class=" col-md-9 col-lg-9 ">
+          <table class="table table-user-information">
+            <tbody>
+            <tr>
+              <td>First Name:</td>
+              <td><%= @account.first_name %></td>
+            </tr>
+            <tr>
+              <td>Last Name:</td>
+              <td><%= @account.last_name %></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><a href="mailto:<%= @account.user.email %>"><%= @account.user.email %></a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <%= link_to '#', class: 'btn btn-sm btn-danger pull-right' do %>
+          <i class="glyphicon glyphicon-remove"></i>
+      <% end %>
+      <%= link_to '#', class: 'btn btn-sm btn-warning pull-right', style: 'margin-right: 5px;' do %>
+          <i class="glyphicon glyphicon-edit"></i>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @account.first_name %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @account.last_name %>
-</p>
+<div class="card col-xs-12 col-md-4">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Account Information</h3>
+    </div>
+    <div class="panel-body">
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Picture:</strong>
-  <%= @account.picture %>
-</p>
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<div class="card col-xs-12 col-md-4">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Apartment Information</h3>
+    </div>
+    <div class="panel-body">
+      <% current_apartment = @account.current_apartment %>
+      <table class="table table-user-information">
+        <tbody>
+        <tr>
+          <td>Name:</td>
+          <td><%= current_apartment.name %></td>
+        </tr>
+        <tr>
+          <td>Rent Due:</td>
+          <td><%= rent_due(current_apartment) %></td>
+        </tr>
+        <tr>
+          <td>Roommates</td>
+          <td><%= roommates(current_apartment).html_safe %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div  class='panel-footer'>
+      <%= link_to 'Search For Apartment', apartments_path, class: 'btn btn-primary'  %>
+      <%= link_to 'New Apartment', new_apartment_path, class: 'btn btn-primary'  %>
+    </div>
+  </div>
+</div>

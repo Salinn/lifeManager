@@ -15,6 +15,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments/new
   def new
     @apartment = Apartment.new
+    @apartment.build_landlord
   end
 
   # GET /apartments/1/edit
@@ -25,6 +26,7 @@ class ApartmentsController < ApplicationController
   # POST /apartments.json
   def create
     @apartment = Apartment.new(apartment_params)
+    @apartment.accounts << current_user.account
 
     respond_to do |format|
       if @apartment.save
@@ -69,6 +71,8 @@ class ApartmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apartment_params
-      params.require(:apartment).permit(:name, :landlord_id, :street_address, :city, :state, :start_date, :end_date, :rent_price)
+      params.require(:apartment).permit(:name, :landlord_id, :street_address, :city, :state, :start_date, :end_date,
+                                        :rent_price,
+                                        landlord_attributes: [:id, :first_name, :last_name, :email, :phone_number])
     end
 end

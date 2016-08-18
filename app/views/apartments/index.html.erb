@@ -34,6 +34,7 @@
         <td><%= apartment.start_date %></td>
         <td><%= apartment.end_date %></td>
         <td><%= apartment.rent_price %></td>
+        <td><%= link_to 'Select Apartment', apartment_add_user_to_apartment_path(apartment), method: :post, class: 'btn btn-primary' %></td>
         <td><%= link_to 'Show', apartment %></td>
         <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

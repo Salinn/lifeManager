@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :bought_items
   resources :accounts
   resources :persons
-  resources :apartments
+  resources :apartments do
+    post :add_user_to_apartment
+  end
   resources :needed_items
   resources :shared_items
   resources :bills

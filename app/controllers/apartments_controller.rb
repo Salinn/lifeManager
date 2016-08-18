@@ -1,5 +1,6 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
+  before_action :set_apartment_id, only: [:add_user_to_apartment]
 
   # GET /apartments
   # GET /apartments.json
@@ -66,16 +67,25 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_apartment
-      @apartment = Apartment.find(params[:id])
-    end
+  def add_user_to_apartment
+    @apartment.accounts << current_user.account
+    redirect_to account_path(current_user.account)
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def apartment_params
-      params.require(:apartment).permit(:name, :landlord_id, :street_address, :city, :state, :start_date, :end_date,
-                                        :rent_price,
-                                        landlord_attributes: [:id, :first_name, :last_name, :email, :phone_number])
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_apartment
+    @apartment = Apartment.find(params[:id])
+  end
+
+  def set_apartment_id
+    @apartment = Apartment.find(params[:apartment_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def apartment_params
+    params.require(:apartment).permit(:name, :landlord_id, :street_address, :city, :state, :start_date, :end_date,
+                                      :rent_price,
+                                      landlord_attributes: [:id, :first_name, :last_name, :email, :phone_number])
+  end
 end

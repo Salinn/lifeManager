@@ -28,4 +28,10 @@ class User < ApplicationRecord
       end
     end
   end
+
+  after_create :create_account
+  def create_account
+    account = Account.create!
+    update_attribute(:account, account)
+  end
 end

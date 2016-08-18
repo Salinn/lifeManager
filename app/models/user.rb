@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :account
 
+  after_create :create_account
+
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
@@ -17,7 +19,7 @@ class User < ApplicationRecord
         return registered_user
       else
         account = Account.create(first_name: data['first_name'],
-                               last_name: data['last_name'])
+                                 last_name: data['last_name'])
 
         user = User.create(provider: access_token.provider,
                            email: data["email"],
@@ -29,9 +31,10 @@ class User < ApplicationRecord
     end
   end
 
-  after_create :create_account
   def create_account
-    account = Account.create!
-    update_attribute(:account, account)
+    if account.empty?
+      account = Account.create!
+      update_attribute(:account, account)
+    end
   end
 end

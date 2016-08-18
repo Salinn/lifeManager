@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bought_item.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @bought_item.price %>
+</p>
+
+<p>
+  <strong>Apartment:</strong>
+  <%= @bought_item.apartment %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bought_item.user %>
+</p>
+
+<%= link_to 'Edit', edit_bought_item_path(@bought_item) %> |
+<%= link_to 'Back', bought_items_path %>

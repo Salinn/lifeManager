@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :bought_items
   resources :accounts
   resources :persons
   resources :apartments

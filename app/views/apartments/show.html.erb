@@ -1,3 +1,4 @@
+<% current_month = Date.today.month %>
 <div class='col-xs-12 col-sm-3'>
   <p>
     <strong>Name:</strong>
@@ -43,11 +44,75 @@
   <%= link_to 'Back', apartments_path %>
 </div>
 <div class='col-xs-12 col-sm-3'>
-
+  <div>
+    <% @bought_items.sort.each do |item_month, items| %>
+        <% next if item_month.month != current_month  %>
+        <h2><%= item_month.strftime('%B') %> Items Bought</h2>
+        <table class='table table-striped'>
+          <tr>
+            <th>Item Name</th>
+            <th>Price</th>
+          </tr>
+          <tbody>
+          <% items.sort_by(&:created_at).each do |item| %>
+              <tr>
+                <td><%= item.name %></td>
+                <td><%= item.price %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+    <hr>
+    <h2>New Bought Items</h2>
+    <div class="card">
+      <%= render 'bought_items/form', bought_item: BoughtItem.new %>
+    </div>
+  </div>
 </div>
 <div class='col-xs-12 col-sm-3'>
-  <% @bills.sort.each do |month, bills| %>
-      <h2><%= month.strftime('%B') %></h2>
+  <div>
+    <h2>Needed Items</h2>
+    <table class='table table-striped'>
+      <tr>
+        <th>Item Name</th>
+      </tr>
+      <tbody>
+      <% @apartment.needed_items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <hr>
+    <div class='card'>
+      <h2>New Needed Items</h2>
+      <%= render 'needed_items/form', needed_item: NeededItem.new %>
+    </div>
+  </div>
+  <!--<div>-->
+  <!--<table class='table table-striped'>-->
+  <!--<tr>-->
+  <!--<th>Item Name</th>-->
+  <!--<th>Price</th>-->
+  <!--</tr>-->
+  <!--<tbody>-->
+  <!--<%# @apartment.shared_items.each do |item| %>-->
+  <!--<tr>-->
+  <!--<td><%# item.name %></td>-->
+  <!--<td><%# item.price %></td>-->
+  <!--</tr>-->
+  <!--<%# end %>-->
+  <!--</tbody>-->
+  <!--</table>-->
+  <!--<h2>New Shared Item</h2>-->
+  <!--</div>-->
+</div>
+<div class='col-xs-12 col-sm-3'>
+  <% @bills.sort.each do |bill_month, bills| %>
+      <% next if bill_month.month != current_month  %>
+      <h2><%= bill_month.strftime('%B') %> Bills</h2>
       <table class='table table-striped'>
         <tr>
           <th>Bill Name</th>
@@ -55,7 +120,7 @@
           <th>Price</th>
         </tr>
         <tbody>
-        <% bills.each do |bill| %>
+        <% bills.sort_by(&:due_date).each do |bill| %>
             <tr>
               <td><%= bill.name %></td>
               <td><%= bill.due_date.to_date.to_s(:long) %></td>
@@ -65,4 +130,9 @@
         </tbody>
       </table>
   <% end %>
+  <hr>
+  <h2>New Bill</h2>
+  <div class="card">
+    <%= render 'bills/form', bill: Bill.new %>
+  </div>
 </div>

@@ -28,7 +28,7 @@ class SharedItemsController < ApplicationController
 
     respond_to do |format|
       if @shared_item.save
-        format.html { redirect_to @shared_item, notice: 'Shared item was successfully created.' }
+        format.html { redirect_to @shared_item.apartment, notice: 'Shared item was successfully created.' }
         format.json { render :show, status: :created, location: @shared_item }
       else
         format.html { render :new }

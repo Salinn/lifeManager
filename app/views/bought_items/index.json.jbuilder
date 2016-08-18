@@ -1,0 +1,1 @@
+json.array! @bought_items, partial: 'bought_items/bought_item', as: :bought_item

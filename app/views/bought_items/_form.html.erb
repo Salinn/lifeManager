@@ -1,10 +1,10 @@
-<%= form_for(bill) do |f| %>
-    <% if bill.errors.any? %>
+<%= form_for(bought_item) do |f| %>
+    <% if bought_item.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+          <h2><%= pluralize(bought_item.errors.count, "error") %> prohibited this bought_item from being saved:</h2>
 
           <ul>
-            <% bill.errors.full_messages.each do |message| %>
+            <% bought_item.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
             <% end %>
           </ul>
@@ -22,11 +22,6 @@
     </div>
 
     <div class="field">
-      <%= f.label :due_date %>
-      <%= f.date_select :due_date %>
-    </div>
-
-    <div class="field">
       <%= f.hidden_field :apartment_id, value: @apartment.id %>
     </div>
 
@@ -35,6 +30,6 @@
     </div>
 
     <div class="actions">
-      <%= f.submit class: 'btn btn-primary' %>
+      <%= f.submit %>
     </div>
 <% end %>

@@ -12,6 +12,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments/1.json
   def show
     @bills = @apartment.bills.group_by { |t| t.due_date.beginning_of_month }
+    @bought_items = @apartment.bought_items.group_by { |t| t.created_at.beginning_of_month }
   end
 
   # GET /apartments/new

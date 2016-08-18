@@ -28,7 +28,7 @@ class NeededItemsController < ApplicationController
 
     respond_to do |format|
       if @needed_item.save
-        format.html { redirect_to @needed_item, notice: 'Needed item was successfully created.' }
+        format.html { redirect_to @needed_item.apartment, notice: 'Needed item was successfully created.' }
         format.json { render :show, status: :created, location: @needed_item }
       else
         format.html { render :new }

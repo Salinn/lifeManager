@@ -1,44 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class='col-xs-12 col-sm-3'>
+  <p>
+    <strong>Name:</strong>
+    <%= @apartment.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @apartment.name %>
-</p>
+  <p>
+    <strong>Landlord:</strong>
+    <%= @apartment.landlord %>
+  </p>
 
-<p>
-  <strong>Landlord:</strong>
-  <%= @apartment.landlord %>
-</p>
+  <p>
+    <strong>Street address:</strong>
+    <%= @apartment.street_address %>
+  </p>
 
-<p>
-  <strong>Street address:</strong>
-  <%= @apartment.street_address %>
-</p>
+  <p>
+    <strong>City:</strong>
+    <%= @apartment.city %>
+  </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @apartment.city %>
-</p>
+  <p>
+    <strong>State:</strong>
+    <%= @apartment.state %>
+  </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @apartment.state %>
-</p>
+  <p>
+    <strong>Start date:</strong>
+    <%= @apartment.start_date %>
+  </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @apartment.start_date %>
-</p>
+  <p>
+    <strong>End date:</strong>
+    <%= @apartment.end_date %>
+  </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @apartment.end_date %>
-</p>
+  <p>
+    <strong>Rent price:</strong>
+    <%= @apartment.rent_price %>
+  </p>
 
-<p>
-  <strong>Rent price:</strong>
-  <%= @apartment.rent_price %>
-</p>
+  <%= link_to 'Edit', edit_apartment_path(@apartment) %> |
+  <%= link_to 'Back', apartments_path %>
+</div>
+<div class='col-xs-12 col-sm-3'>
 
-<%= link_to 'Edit', edit_apartment_path(@apartment) %> |
-<%= link_to 'Back', apartments_path %>
+</div>
+<div class='col-xs-12 col-sm-3'>
+  <% @bills.sort.each do |month, bills| %>
+      <h2><%= month.strftime('%B') %></h2>
+      <table class='table table-striped'>
+        <tr>
+          <th>Bill Name</th>
+          <th>Due Date </th>
+          <th>Price</th>
+        </tr>
+        <tbody>
+        <% bills.each do |bill| %>
+            <tr>
+              <td><%= bill.name %></td>
+              <td><%= bill.due_date.to_date.to_s(:long) %></td>
+              <td><%= bill.price %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+  <% end %>
+</div>

@@ -11,6 +11,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments/1
   # GET /apartments/1.json
   def show
+    @bills = @apartment.bills.group_by { |t| t.due_date.beginning_of_month }
   end
 
   # GET /apartments/new

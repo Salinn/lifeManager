@@ -59,22 +59,29 @@
     </div>
     <div class="panel-body">
       <% current_apartment = @account.current_apartment %>
-      <table class="table table-user-information">
-        <tbody>
-        <tr>
-          <td>Name:</td>
-          <td><%= current_apartment.name %></td>
-        </tr>
-        <tr>
-          <td>Rent Due:</td>
-          <td><%= rent_due(current_apartment) %></td>
-        </tr>
-        <tr>
-          <td>Roommates</td>
-          <td><%= roommates(current_apartment).html_safe %></td>
-        </tr>
-        </tbody>
-      </table>
+      <% unless current_apartment.nil? %>
+          <table class="table table-user-information">
+            <tbody>
+            <tr>
+              <td>Name:</td>
+              <td><%= current_apartment.name %></td>
+            </tr>
+            <tr>
+              <td>Rent Due:</td>
+              <td><%= rent_due(current_apartment) %></td>
+            </tr>
+            <tr>
+              <td>Roommates</td>
+              <td><%= roommates(current_apartment).html_safe %></td>
+            </tr>
+            <tr>
+              <td>
+                <%= link_to 'Apartment Details', apartment_path(current_apartment), class: 'btn btn-sm btn-primary' %>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+      <% end %>
     </div>
     <div  class='panel-footer'>
       <%= link_to 'Search For Apartment', apartments_path, class: 'btn btn-primary'  %>

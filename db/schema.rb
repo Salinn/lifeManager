@@ -46,8 +46,13 @@ ActiveRecord::Schema.define(version: 20160806000900) do
   create_table "bills", force: :cascade do |t|
     t.string   "name"
     t.string   "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.date     "due_date"
+    t.integer  "apartment_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["apartment_id"], name: "index_bills_on_apartment_id"
+    t.index ["user_id"], name: "index_bills_on_user_id"
   end
 
   create_table "landlords", force: :cascade do |t|

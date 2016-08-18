@@ -4,4 +4,6 @@ class Apartment < ApplicationRecord
 
   has_many :all_apartments, dependent: :destroy
   has_many :accounts, through: :all_apartments
+
+  has_many :bills
 end

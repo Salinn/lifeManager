@@ -32,7 +32,7 @@ class User < ApplicationRecord
   end
 
   def create_account
-    if account.empty?
+    if self.account.nil?
       account = Account.create!
       update_attribute(:account, account)
     end
